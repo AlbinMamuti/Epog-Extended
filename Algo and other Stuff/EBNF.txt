@@ -1,0 +1,50 @@
+1.
+<digit> <= 0|1|2|3|4|5|6|7|8|9
+<evendigit> <= 0|2|4|6|8
+<geradezahl>     <= [+|-]{<digit>} <evendigit>
+
+Diese Beschreibung ist richtig 
+
+2.)
+	<geradezahl>     <=
+		1. [+|-]{<digit>} <evendigit>
+		2. {<digit>}<evendigit> // gut
+		3. <digit><evendigit> // gut
+		4. 2 <evendigit> // gut
+		5. 2 8 // alles richtig
+3.
+	<x> <= x
+	<y> <= y
+	<x2ygemischt> <= ( <x><y><y> | <y><x><y> | <y><y><x> ){<x2ygemischt>} 
+
+	Ich kann dir ein Gegenbeispiel geben. YYYYXX ist ein gültiges Symbol aber ungültig mir deiner EBNF Beschreibung. Schau einfach die Musterlösung an. Tipps : Die Aufgabe muss mit Rekursion gelöst werden.
+	
+...
+
+
+4.
+Beispiel1 : {Epsilon, A, B, AB}
+...
+Beispiel2: {epsilon, A, AB}
+
+Illegal für Beispiel2 wäre B
+
+Genau du hast die Option gut verstanden ! 
+
+5.
+
+<x> <= x
+<yy> <= yy
+<doppelt> <= <x><yy> | <x> <doppelt> <yy> 
+
+Diese Beschreibung ist richtig. Du kannst jedoch noch verkürzen. <doppelt> <= x <doppelt> yy
+
+6. Zusatzaufgabe Palindorm
+
+<digits> <= 1|2|3|4
+
+Palindrom <=    <digit> | 
+				1 | [Palindrom] | 1   |
+				2 | [Palindrom] | 2   |
+				3 | [Palindrom] | 3   |
+				4 | [Palindrom] | 4   |
