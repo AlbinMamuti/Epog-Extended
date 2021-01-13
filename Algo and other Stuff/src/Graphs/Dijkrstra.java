@@ -1,78 +1,97 @@
 package Graphs;
-import AlgoSort.*;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Dijkrstra {
+
+	public static int INF = 9999;
 	
 	public static void main(String[] arg) throws FileNotFoundException {
-		Scanner scanner = new Scanner(new File("EBNF2.txt"));
+		DijkShort();
+		System.out.println();
+		FloydShort();
+		System.out.println();
+		Bellman();
+		System.out.println();
+	}
+
+	public static void DijkShort() throws FileNotFoundException { // running Dijkstra on input File EBNF3.txt
 		
+		Scanner scanner = new Scanner(new File("EBNF3.txt"));
+
 		int n = scanner.nextInt();
 		int m = scanner.nextInt();
-		int[][] edge_array=new int[m][3];
-		for(int i=0;i<m;i++){
-	          edge_array[i][0]=scanner.nextInt();  // one endpoint
-	          edge_array[i][1]=scanner.nextInt();  // the other endpoint
-	          edge_array[i][2]=scanner.nextInt();  // weight
-	        }
+		int[][] edge_array = new int[m][3];
+		for (int i = 0; i < m; i++) {
+			edge_array[i][0] = scanner.nextInt(); // one endpoint
+			edge_array[i][1] = scanner.nextInt(); // the other endpoint
+			edge_array[i][2] = scanner.nextInt(); // weight
+		}
+
+		Graph G = new Graph(n, m, edge_array);
+
+		G.Dijkrstra(0);
+		for (int i = 0; i < G.arr.length; i++) {
+			System.out.print(G.arr[i] + " ");
+
+		}
+		System.out.println();
+		for (int i = 0; i < G.arr.length; i++) {
+			System.out.print(G.pred[i] + " ");
+
+		}
+		System.out.println();
+		G.printerPath();
+	}
+
+	public static void FloydShort() throws FileNotFoundException { // running FloydWarshall on input File EBNF5.txt
+		Scanner scanner3 = new Scanner(new File("EBNF5.txt"));
+		int n = scanner3.nextInt();
+		int m = scanner3.nextInt();
+		int[][] grid = new int[n][n];
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				grid[i][j] = Integer.MAX_VALUE;
+				if (i == j)
+					grid[i][j] = Integer.MIN_VALUE;
+			}
+		}
+		while (scanner3.hasNext()) {
+			int u, v, w;
+			u = scanner3.nextInt();
+			v = scanner3.nextInt();
+			w = scanner3.nextInt();
+			grid[u][v] = w;
+			// grid[v][u] = w;
+		}
+		GrapWithMatrix graph = new GrapWithMatrix(n);
+		// graph.graph = grid;
+		graph.floydWarshall();
+	}
+	public static void Bellman() { // running Bellman ford with an input arr
 		
-		Graph G= new Graph(n, m, edge_array);
-		HeapSort s = new HeapSort();
-		int[][] arr = new int[4][5];
-		System.out.println(arr[0].length);
+		int[][] arr = { { INF, 2, 9, 8, INF, INF, INF, INF }, { INF, INF, INF, INF, INF, 2, 8, INF },
+				{ INF, INF, INF, INF, 2, INF, INF, INF }, { INF, INF, INF, INF, INF, 7, INF, 1 },
+				{ INF, INF, 9, INF, INF, INF, INF, 2 }, { INF, INF, INF, INF, INF, INF, INF, 7 },
+				{ INF, INF, INF, INF, INF, 1, INF, INF }, { INF, INF, INF, INF, INF, INF, INF, INF } };
+		
+		GraphforBellman G = new GraphforBellman(8, 12, arr);
+		
+		G.BellmanFord(0);
 		
 	}
-	
+
 }
 
-class Graph{
-	private int n;              // number of vertices
-	  private int m;              // number of edges
-	  private int[] degrees;      // degrees[i]: the degree of vertex i
-	  private int[][] edges;      // edges[i][j]: the endpoint of the j-th edge of vertex i
-	  private int[][] weights;    // weights[i][j]: the weight of the j-th edge of vertex i
-	  
-	  Graph(int n, int m, int[][] edge_array){
-		    this.n=n;
-		    this.m=m;
-		    degrees=new int[n];
-		    
-		    for(int i=0;i<n;i++){
-		      degrees[i]=0;
-		    }
-		   
-		    for(int i=0;i<m;i++){
-		      degrees[edge_array[i][0]]++;
-		      degrees[edge_array[i][1]]++;
-		    }
-		    
-		    edges=new int[n][];
-		    weights=new int[n][];
-		      
-		    for(int i=0;i<n;i++){
-		      if(degrees[i]!=0){
-		        edges[i]=new int[degrees[i]];
-		        weights[i]=new int[degrees[i]];
-		        degrees[i]=0;
-		      }
-		      else{
-		        edges[i]=null;
-		        weights[i]=null;
-		      }
-		    }
-		    
-		    for(int i=0;i<m;i++){
-		      edges[edge_array[i][0]][degrees[edge_array[i][0]]]=edge_array[i][1];
-		      edges[edge_array[i][1]][degrees[edge_array[i][1]]]=edge_array[i][0];
-		      weights[edge_array[i][0]][degrees[edge_array[i][0]]]=edge_array[i][2];
-		      weights[edge_array[i][1]][degrees[edge_array[i][1]]]=edge_array[i][2];
-		      degrees[edge_array[i][0]]++;
-		      degrees[edge_array[i][1]]++;
-		    } 
-		  }
-	  
-	  
-}
+
+
+
+
+
+
+
+
+
+

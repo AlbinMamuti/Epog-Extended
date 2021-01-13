@@ -68,17 +68,4 @@ public class HeapSort {
 	}
 
 }
-class Heap{
-	
-	int[] heaparray;
-	
-	public Heap(int [] arr){
-		this.heaparray = arr;
-	}
-	
-	
-	public void insert(int[] arr) {
-		
-	}
-	
-}
+
