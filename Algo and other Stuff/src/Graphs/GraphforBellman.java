@@ -63,7 +63,7 @@ public class GraphforBellman {
 				int u = e.src;
 				int v = e.dest;
 				int w = e.weight;
-				
+				 
 				dist[v] = (dist[u] != INF && dist[u]+w < dist[v]) ? dist[u] + w : dist[v];
 				
 			}
