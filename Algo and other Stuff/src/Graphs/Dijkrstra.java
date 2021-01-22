@@ -29,18 +29,21 @@ public class Dijkrstra {
 			edge_array[i][2] = scanner.nextInt(); // weight
 		}
 
-		Graph G = new Graph(n, m, edge_array);
+		GraphDijkstra G = new GraphDijkstra(n, m, edge_array);
 
 		G.Dijkrstra(0);
-		for (int i = 0; i < G.arr.length; i++) {
+		for(int i = 0; i < n; i++)
+			System.out.print(i +" ");
+		System.out.println();
+		for (int i = 0; i < G.arr.length; i++) 
 			System.out.print(G.arr[i] + " ");
 
-		}
+		
 		System.out.println();
-		for (int i = 0; i < G.arr.length; i++) {
+		for (int i = 0; i < G.arr.length; i++) 
 			System.out.print(G.pred[i] + " ");
 
-		}
+		
 		System.out.println();
 		G.printerPath();
 	}
@@ -66,7 +69,7 @@ public class Dijkrstra {
 			grid[u][v] = w;
 			// grid[v][u] = w;
 		}
-		GrapWithMatrix graph = new GrapWithMatrix(n);
+		GraphFloydWarshall graph = new GraphFloydWarshall(n);
 		// graph.graph = grid;
 		graph.floydWarshall();
 	}

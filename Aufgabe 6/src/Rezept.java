@@ -1,5 +1,6 @@
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Rezept {
@@ -56,8 +57,12 @@ public class Rezept {
 	}
 
 	public void vereinfache() {
+		int i = 0;
+		while(i < 50) {
+			rec2(letzteEinheit, null);
+			i++;
+		}
 		
-		rec2(letzteEinheit, null);
 		
 		
 		
@@ -75,10 +80,12 @@ public class Rezept {
 				previous.vorbedingungen.remove(k);
 				previous.vorbedingungen.add(temp);
 			}
+			return;
 			
 		} else {
-			for(Einheit e : k.vorbedingungen)
-				rec2(e, k);
+			Iterator<Einheit> i = k.vorbedingungen.iterator();
+			while(i.hasNext())
+				rec2(i.next(), k);
 		}
 		
 	}

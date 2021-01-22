@@ -12,34 +12,35 @@ public class ADvent {
 		
 		Scanner scanner = new Scanner(new File("EBNF.txt"));
 		ArrayList<Pass> p = new ArrayList<>();
+		String s = scanner.nextLine();
+		System.out.println(s);
 		
-		int[] arr = new int[200];
-		int i = 0;
-
+		
 		while(scanner.hasNext()) {
-			int l = scanner.nextInt();
-			int u = scanner.nextInt();
-			String m = scanner.next();
-			String pass = scanner.next();
-			Character n = m.charAt(0);
-			p.add(new Pass(l,u,n,pass));
-		}
-		
-		int ans = 0;
-		
-		for(Pass k : p) {
-			if(k.flag) {
-				ans++;
+			String b = scanner.nextLine();
+			if(b=="") {
+				System.out.println("DIS MAMI");
+				continue;
+			} else {
+				System.out.println(b);
 			}
 		}
-
-		System.out.println(ans);
 		
 	}
 	
 	
 	
 }
+class PassPort{
+   String gry;
+   String pid;
+   String eyr;
+   String hcl;
+   String byr;
+   String iyr; String cid;
+   String hgt;
+}
+
 class Pass{
 	int lowerbound;
 	int upperboud;

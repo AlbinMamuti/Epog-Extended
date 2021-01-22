@@ -1,6 +1,6 @@
 package Graphs;
 
-public class GrapWithMatrix {
+public class GraphFloydWarshall {
 	public static int INF = 9999;
 	public int graph[][] = { { INF, 2, 9, 8, INF, INF, INF, INF }, { INF, INF, INF, INF, INF, 2, 8, INF },
 			{ INF, INF, INF, INF, 2, INF, INF, INF }, { INF, INF, INF, INF, INF, 7, INF, 1 },
@@ -8,7 +8,7 @@ public class GrapWithMatrix {
 			{ INF, INF, INF, INF, INF, 1, INF, INF }, { INF, INF, INF, INF, INF, INF, INF, INF } };
 	int n;
 
-	public GrapWithMatrix(int n) {
+	public GraphFloydWarshall(int n) {
 		this.n = n;
 	}
 
